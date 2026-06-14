@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard de Transporte</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>Dashboard de Transporte e Logística</h1>
+  <p>Indicadores de entregas, atrasos e desempenho por região</p>
+</header>
+
+<section class="cards">
+  <div class="card">
+    <div class="label">Total de entregas</div>
+    <div class="value" id="totalEntregas">1.248</div>
+  </div>
+  <div class="card green">
+    <div class="label">Taxa de entrega no prazo</div>
+    <div class="value" id="taxaEntrega">92.3%</div>
+  </div>
+  <div class="card red">
+    <div class="label">Taxa de atraso</div>
+    <div class="value" id="taxaAtraso">7.7%</div>
+  </div>
+  <div class="card purple">
+    <div class="label">Tempo médio de entrega</div>
+    <div class="value">2.4 dias</div>
+  </div>
+  <div class="card amber">
+    <div class="label">Custo médio por entrega</div>
+    <div class="value">R$ 18,50</div>
+  </div>
+</section>
+
+<section class="charts">
+
+  <div class="chart-box full-width">
+    <h2>Entregas no prazo vs. com atraso (mensal)</h2>
+    <div class="legend">
+      <span><span class="dot" style="background:#1D9E75;"></span>No prazo</span>
+      <span><span class="dot" style="background:#D85A30;"></span>Com atraso</span>
+    </div>
+    <div class="chart-container">
+      <canvas id="trendChart" role="img" aria-label="Gráfico de linhas mostrando a taxa de entregas no prazo e com atraso de janeiro a junho"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <h2>Taxa de atraso por região (%)</h2>
+    <div class="chart-container">
+      <canvas id="regionChart" role="img" aria-label="Gráfico de barras mostrando a taxa de atraso por região"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <h2>Distribuição das entregas</h2>
+    <div class="chart-container">
+      <canvas id="pieChart" role="img" aria-label="Gráfico de pizza mostrando a proporção de entregas no prazo, com atraso e canceladas"></canvas>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  Dados fictícios — dashboard criado para fins educacionais.
+</footer>
+
+
+<!--Javascript dos graficos(chart.js)-->
+<script>
+     const meses = ['Jan','Fev','Mar','Abr','Mai','Jun'];
+  const noPrazo = [88, 90, 91, 93, 92, 94];
+  const comAtraso = [12, 10, 9, 7, 8, 6];
+
+  const regioes = ['Norte','Sul','Sudeste','Nordeste','Centro-Oeste'];
+  const atrasoRegiao = [11, 6, 5, 9, 7];
+
+  new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels: meses,
+      datasets: [
+        {
+          label: 'No prazo (%)',
+          data: noPrazo,
+          borderColor: '#1D9E75',
+          backgroundColor: '#1D9E75',
+          tension: 0.3,
+          fill: false
+        },
+        {
+          label: 'Com atraso (%)',
+          data: comAtraso,
+          borderColor: '#D85A30',
+          backgroundColor: '#D85A30',
+          borderDash: [6, 3],
+          tension: 0.3,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('regionChart'), {
+    type: 'bar',
+    data: {
+      labels: regioes,
+      datasets: [{
+        label: 'Taxa de atraso (%)',
+        data: atrasoRegiao,
+        backgroundColor: '#378ADD',
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, max: 15, ticks: { callback: v => v + '%' } }
+      }
+    }
+  });
+
+ 
+  new Chart(document.getElementById('pieChart'), {
+    type: 'pie',
+    data: {
+      labels: ['No prazo', 'Com atraso', 'Canceladas'],
+      datasets: [{
+        data: [92.3, 7.7, 2.0],
+        backgroundColor: ['#1D9E75', '#D85A30', '#888780']
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom' }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

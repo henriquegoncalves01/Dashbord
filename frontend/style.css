@@ -1,0 +1,122 @@
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+    color: #2c2c2a;
+    padding: 24px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  header h1 {
+    font-size: 26px;
+    color: #1a1a1a;
+  }
+
+  header p {
+    color: #666;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto 32px auto;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    border-left: 5px solid #378ADD;
+  }
+
+  .card.green  { border-left-color: #1D9E75; }
+  .card.red    { border-left-color: #D85A30; }
+  .card.purple { border-left-color: #7F77DD; }
+  .card.amber  { border-left-color: #EF9F27; }
+
+  .card .label {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 6px;
+  }
+
+  .card .value {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .card.green .value  { color: #0F6E56; }
+  .card.red .value    { color: #993C1D; }
+  .card.purple .value { color: #534AB7; }
+  .card.amber .value  { color: #854F0B; }
+  .card .value        { color: #185FA5; }
+
+  .charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .chart-box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+
+  .chart-box h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  .chart-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+
+  .legend span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .legend .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 12px;
+    color: #999;
+  }
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
